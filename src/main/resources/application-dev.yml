@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    hikari:
+      data-source-properties:
+        useServerPrepStmts: 'true'
+        cacheResultSetMetadata: 'true'
+        cacheServerConfiguration: 'true'
+        cachePrepStmts: 'true'
+        rewriteBatchedStatements: 'true'
+        elideSetAutoCommits: 'true'
+        useLocalSessionState: 'true'
+        prepStmtCacheSize: '250'
+        maintainTimeStats: 'false'
+        prepStmtCacheSqlLimit: '2048'
+      idle-timeout: '300000'
+      maximum-pool-size: '10'
+      connection-timeout: '50000'
+      pool-name: ConnPool
+      max-lifetime: '900000'
+      connection-test-query: select 1 from dual
+      minimum-idle: '10'
+    driver-class-name: org.postgresql.Driver
+    password: gasp12024$
+    username: sofka
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:3306/sofka
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari:
+          HikariConfig: DEBUG
+          nodeValue: TRACE
