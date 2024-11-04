@@ -10,6 +10,6 @@ create table customer (
 	client_id varchar(50) not null,
 	password varchar(50) not null,
 	status varchar(3) not null
-)
+);
 
 
