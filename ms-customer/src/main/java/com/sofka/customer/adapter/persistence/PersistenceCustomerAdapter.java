@@ -5,10 +5,12 @@ import com.sofka.customer.adapter.persistence.postgres.repository.CustomerReposi
 import com.sofka.customer.application.exception.NotFoundException;
 import com.sofka.customer.application.port.input.PersistenceCustomerPort;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class PersistenceCustomerAdapter implements PersistenceCustomerPort {
@@ -27,6 +29,7 @@ public class PersistenceCustomerAdapter implements PersistenceCustomerPort {
 
     @Override
     public CustomerEntity find(Long id) throws NotFoundException {
+        log.info("Find customer by id {}", id);
         return customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Customer " + id + " not found"));
     }
 
