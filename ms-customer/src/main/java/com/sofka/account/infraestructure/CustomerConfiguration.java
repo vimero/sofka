@@ -2,6 +2,7 @@ package com.sofka.account.infraestructure;
 
 import com.sofka.account.application.mapper.CustomerMapper;
 import com.sofka.account.application.port.input.PersistenceCustomerPort;
+import com.sofka.account.application.port.output.AccountPort;
 import com.sofka.account.application.usecase.CreateCustomerUseCase;
 import com.sofka.account.application.usecase.DeleteCustomerUseCase;
 import com.sofka.account.application.usecase.EditCustomerUseCase;
@@ -13,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class CustomerConfiguration {
 
     @Bean
-    CreateCustomerUseCase createCustomerUseCase(PersistenceCustomerPort persistenceCustomerPort, CustomerMapper customerMapper){
-        return new CreateCustomerUseCase(persistenceCustomerPort, customerMapper);
+    CreateCustomerUseCase createCustomerUseCase(PersistenceCustomerPort persistenceCustomerPort, AccountPort accountPort, CustomerMapper customerMapper){
+        return new CreateCustomerUseCase(persistenceCustomerPort, accountPort,customerMapper);
     }
 
     @Bean

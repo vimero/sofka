@@ -1,4 +1,6 @@
 spring:
+  kafka:
+    bootstrap-servers: kafka:29092
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:

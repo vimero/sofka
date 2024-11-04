@@ -9,6 +9,7 @@ import com.sofka.account.application.usecase.EditCustomerUseCase;
 import com.sofka.account.application.usecase.ReadCustomerUseCase;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/customers")
@@ -36,6 +38,12 @@ public class CustomerRest {
         return readCustomerUseCase.read();
     }
 
+    @PostMapping
+    public CustomerDTO create(@Valid @RequestBody CustomerDTO request){
+        log.info("Vimerooo");
+        return createCustomerUseCase.create(request);
+    }
+
     @PutMapping("/{id}")
     public CustomerDTO edit(@PathVariable("id")Long id, @RequestParam String fullName) throws NotFoundException {
         return editCustomerUseCase.edit(id, fullName);
@@ -44,11 +52,6 @@ public class CustomerRest {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id")Long id) throws NotFoundException {
         deleteCustomerUseCase.delete(id);
-    }
-
-    @PostMapping
-    public CustomerDTO create(@Valid @RequestBody CustomerDTO request){
-        return createCustomerUseCase.create(request);
     }
 
 }
